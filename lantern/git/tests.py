@@ -1,7 +1,9 @@
 import random
 import unittest
+import homework
 
-from lantern.git.homework import (
+
+from homework import (
     is_two_object_has_same_value,
     is_two_objects_has_same_type,
     is_two_objects_is_the_same_objects,
