@@ -156,4 +156,16 @@ def simple_sort(data: List[int]) -> List[list]:
         simple_sort([2, 9, 6, 7, 3, 2, 1])
         >>> [1, 2, 2, 3, 6, 7, 9]
     """
-    return sorted(data)
+    #return sorted(data)
+    # my mistake was that i didn`t see warning about not using build-in methods
+    # my quick bubble sort realization
+    sw = True
+    while sw:
+        sw = False
+        for i in range(len(data) - 1):
+            if data[i] > data[i + 1]:
+                a = data[i + 1]
+                data[i + 1] = data[i]
+                data[i] = a
+                sw = True
+    return data
