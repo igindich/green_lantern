@@ -39,7 +39,7 @@ class Cat:
     """
 
     def __init__(self, age):
-        pass
+        #pass
 
 
     def eat(self, product):
