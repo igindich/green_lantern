@@ -42,6 +42,8 @@ class Cat:
         pass
         pass
         pass
+	pass
+
 
     def eat(self, product):
         pass
