@@ -39,11 +39,10 @@ class Cat:
     """
 
     def __init__(self, age):
-        pass
-        pass
-        pass
-        pass
-        pass
+        #  pass
+        # pass
+        # pass
+        # pass
 
 	pass
 
