@@ -1,5 +1,7 @@
 import random
 import unittest
+import homework
+
 
 from homework import (
     is_two_object_has_same_value,
