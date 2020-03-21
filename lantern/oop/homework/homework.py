@@ -224,7 +224,7 @@ class Wall:
 
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
         #a = (self.width * self.height) // (roll_length_m * roll_width_m)
-        a = int((self.width * self.height) / (roll_length_m * roll_width_m)) + 1
+        a = int((self.width * self.height) / (roll_length_m * roll_width_m) + 1)
         return a
 
 
