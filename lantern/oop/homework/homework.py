@@ -223,7 +223,8 @@ class Wall:
         return self.width * self.height
 
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
-        a = (self.width * self.height) // (roll_length_m * roll_width_m) + 1
+        #a = (self.width * self.height) // (roll_length_m * roll_width_m)
+        a = int((self.width * self.height) / (roll_length_m * roll_width_m)) + 1
         return a
 
 
@@ -443,7 +444,7 @@ class House:
         self.__door.update_metal_price(new_metal_price)
 
     def get_roof_square(self):
-        return self.__roof.root_square()
+        return self.__roof.roof_square()
 
     def get_walls_square(self):
         a = 0
@@ -469,7 +470,7 @@ class House:
         else:
             a = 0
             for i in self.__walls:
-                a += i.number_of_rools_of_wallpaper(roll_length_m,roll_width_m)
+                a += i.number_of_rolls_of_wallpaper(roll_length_m, roll_width_m)
             return a
 
     def get_room_square(self):
