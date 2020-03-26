@@ -27,12 +27,21 @@ class Asteroid:
                 self.ob.append(o(random.randint(1, self.x), random.randint(1, self.y)))
 
 class Robot:
-    def __init__(self, x, y, asteroid):
+    def __init__(self, x, y, asteroid, direction):
         self.x = x
         self.y = y
         self.asteroid = asteroid
+        self.direction = direction
         if self.x > self.asteroid.x or self.y > self.asteroid.y :
             raise MissAsteroidError()
+
+    def turn_left(self):
+        turn = {"N":"W", "W":"S", "S":"E", "E":"N"}
+        self.direction = turn[self.direction]
+
+    def turn_right(self):
+        turn = {"N":"E", "E":"S", "S":"W", "W":"N"}
+        self.direction = turn[self.direction]
 
 
 class MissAsteroidError(Exception):
