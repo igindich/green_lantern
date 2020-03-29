@@ -223,9 +223,7 @@ class Wall:
         return self.width * self.height
 
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
-        a = int((self.width * self.height) // (roll_length_m * roll_width_m)) + 0.5
-        #a = int((self.width * self.height) / (roll_length_m * roll_width_m)) + 1
-        return a
+        return (self.width * self.height) / (roll_length_m * roll_width_m )
 
 
 class Roof:
@@ -239,16 +237,16 @@ class Roof:
 
     """
 
-    def __init__(self,width,height,roof_type):
+    def __init__(self, width, height, roof_type):
         self.width = width
-        self.heihgt = height
+        self.height = height
         self.roof_type = roof_type
 
     def roof_square(self):
         if self.roof_type == "gable":
-            return self.width * self.heihgt * 2
+            return self.width * self.height * 2
         elif self.roof_type == "single-pitch":
-            return self.width * self.heihgt
+            return self.width * self.height
         else:
             try:
                 raise ValueError
@@ -471,7 +469,7 @@ class House:
             a = 0
             for i in self.__walls:
                 a += i.number_of_rolls_of_wallpaper(roll_length_m, roll_width_m)
-            return a
+            return int(a)
 
     def get_room_square(self):
         return self.get_walls_square() - self.get_windows_square() - self.get_door_square()
