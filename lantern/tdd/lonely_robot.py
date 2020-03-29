@@ -74,6 +74,31 @@ class Robot:
         elif self.direction == "E":
             self.x += 1
 
+    def __check_move_back(self):
+        if self.direction == "S":
+            if self.y + 1 > self.asteroid.y:
+                raise RobotOutAsteroidError()
+        elif self.direction == "N":
+            if self.y - 1 < 0:
+                raise RobotOutAsteroidError()
+        elif self.direction == "E":
+            if self.x - 1 < 0:
+                raise RobotOutAsteroidError()
+        elif self.direction == "W":
+            if self.x + 1 > self.asteroid.x:
+                raise RobotOutAsteroidError()
+
+    def move_back(self):
+        self.__check_move_back()
+        if self.direction == "S":
+            self.y += 1
+        elif self.direction == "N":
+            self.y -= 1
+        elif self.direction == "E":
+            self.x -= 1
+        elif self.direction == "W":
+            self.x += 1
+
     def turn_left(self):
         turn = {"N": "W", "W": "S", "S": "E", "E": "N"}
         self.direction = turn[self.direction]

@@ -1,6 +1,6 @@
 
 import pytest
-from lonely_robot import Robot, Asteroid, MissAsteroidError
+from lonely_robot  import Robot, Asteroid, MissAsteroidError, RobotOutAsteroidError
 
 
 class TestRobotCreation:
@@ -72,5 +72,19 @@ class TestMove:
     def test_move(self, direction, result):
         robot = Robot(self.x, self.y, self.asteroid, direction)
         robot.move()
+        assert robot.x == result[0]
+        assert robot.y == result[1]
+
+
+
+    @pytest.mark.parametrize("direction,result",
+                [("N", (10, 14)),
+                 ("E", (9, 15)),
+                 ("S", (10, 16)),
+                 ("W", (11, 15))]
+    )
+    def test_move_back(self, direction, result):
+        robot = Robot(self.x, self.y, self.asteroid, direction)
+        robot.move_back()
         assert robot.x == result[0]
         assert robot.y == result[1]
