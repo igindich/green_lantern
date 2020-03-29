@@ -35,14 +35,6 @@ class Robot:
         if self.x > self.asteroid.x or self.y > self.asteroid.y :
             raise MissAsteroidError()
 
-    def turn_left(self):
-        turn = {"N":"W", "W":"S", "S":"E", "E":"N"}
-        self.direction = turn[self.direction]
-
-    def turn_right(self):
-        turn = {"N":"E", "E":"S", "S":"W", "W":"N"}
-        self.direction = turn[self.direction]
-
 
 class MissAsteroidError(Exception):
     pass
