@@ -88,3 +88,14 @@ class TestMove:
         robot.move_back()
         assert robot.x == result[0]
         assert robot.y == result[1]
+
+    @pytest.mark.parametrize("direction,robot_coordinates",
+                [("N", (10, 30)),
+                 ("E", (20, 15)),
+                 ("S", (10, 0)),
+                 ("W", (0, 15))]
+    )
+    def test_drop_robot_out_asteroid(self, direction, robot_coordinates):
+        with pytest.raises(RobotOutAsteroidError):
+            robot = Robot(*robot_coordinates, self.asteroid, direction)
+            robot.move()
