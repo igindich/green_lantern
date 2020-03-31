@@ -115,7 +115,16 @@ def task_6_list_all_supplier_countries(cur) -> list:
     Returns: 29 records
 
     """
-    pass
+    L = []
+    try:
+        Query = "select country from suppliers"
+        cur.execute(Query)
+        suppliers_records = cur.fetchall()
+        for i in suppliers_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_7_list_supplier_countries_in_desc_order(cur) -> list:
@@ -128,7 +137,16 @@ def task_7_list_supplier_countries_in_desc_order(cur) -> list:
     Returns: 29 records in descending order
 
     """
-    pass
+    L = []
+    try:
+        Query = "select country from suppliers ORDER BY country desc"
+        cur.execute(Query)
+        suppliers_records = cur.fetchall()
+        for i in suppliers_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_8_count_customers_by_city(cur):
@@ -141,7 +159,16 @@ def task_8_count_customers_by_city(cur):
     Returns: 69 records in descending order
 
     """
-    pass
+    L = []
+    try:
+        Query = "select COUNT(city), city from customers GROUP BY city"
+        cur.execute(Query)
+        customers_city_records = cur.fetchall()
+        for i in customers_city_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_9_count_customers_by_country_with_than_10_customers(cur):
@@ -153,7 +180,16 @@ def task_9_count_customers_by_country_with_than_10_customers(cur):
 
     Returns: 3 records
     """
-    pass
+    L = []
+    try:
+        Query = "select count(country),country from customers group by country having count(country)>10"
+        cur.execute(Query)
+        customers_country_records = cur.fetchall()
+        for i in customers_country_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_10_list_first_10_customers(cur):
@@ -162,7 +198,16 @@ def task_10_list_first_10_customers(cur):
 
     Results: 10 records
     """
-    pass
+    L = []
+    try:
+        Query = "select * from customers limit 10"
+        cur.execute(Query, ())
+        customers_records = cur.fetchall()
+        for i in customers_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_11_list_customers_starting_from_11th(cur):
@@ -174,7 +219,16 @@ def task_11_list_customers_starting_from_11th(cur):
 
     Returns: 11 records
     """
-    pass
+    L = []
+    try:
+        Query = "select * from customers offset 11"
+        cur.execute(Query, ())
+        customers_records = cur.fetchall()
+        for i in customers_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_12_list_suppliers_from_specified_countries(cur):
