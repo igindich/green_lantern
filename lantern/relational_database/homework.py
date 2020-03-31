@@ -261,7 +261,16 @@ def task_13_list_products_from_sweden_suppliers(cur):
 
     Returns: 3 records
     """
-    pass
+    L = []
+    try:
+        Query = "select * from products where supplierid = (select supplierid from suppliers where country=%s)"
+        cur.execute(Query, ('Sweden'))
+        suppliers_records = cur.fetchall()
+        for i in suppliers_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_14_list_products_with_supplier_information(cur):
