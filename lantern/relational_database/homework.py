@@ -19,8 +19,8 @@ def task_1_add_new_record_to_db(con) -> None:
     Returns: 92 records
 
     """
-    cur = con.cursor()
-
+    #cur = con.cursor()
+    pass
 
 def task_2_list_all_customers(cur) -> list:
     """
@@ -39,8 +39,10 @@ def task_2_list_all_customers(cur) -> list:
         customer_records = cur.fetchall()
         for i in customer_records:
             L.append(i)
+        return L
     except (Exception, psycopg2.Error) as error:
         print("Error while fetching data from PostgreSQL", error)
+
 
 
 def task_3_list_customers_in_germany(cur) -> list:
@@ -52,7 +54,16 @@ def task_3_list_customers_in_germany(cur) -> list:
 
     Returns: 11 records
     """
-    pass
+    L = []
+    try:
+        Query = "select * from Customers where Country = 'Germany' "
+        cur.execute(Query)
+        customer_records = cur.fetchall()
+        for i in customer_records:
+            L.append(i)
+        return L
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_4_update_customer(con):
