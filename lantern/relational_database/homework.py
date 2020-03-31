@@ -242,7 +242,7 @@ def task_12_list_suppliers_from_specified_countries(cur):
     """
     L = []
     try:
-        Query = "select supplierid, suppliername, contactname, city, country from suppliers where (country=%s) or (country=%s) or (country=%s)"
+        Query = "select supplierid,suppliername,contactname,city,country from suppliers where (country=%s) or (country=%s) or (country=%s)"
         cur.execute(Query, ('USA', 'UK', 'Japan'))
         suppliers_records = cur.fetchall()
         for i in suppliers_records:
@@ -261,14 +261,14 @@ def task_13_list_products_from_sweden_suppliers(cur):
 
     Returns: 3 records
     """
-    L = []
+    l = []
     try:
-        Query = "select * from products where supplierid = (select supplierid from suppliers where country=%s)"
-        cur.execute(Query, ('Sweden'))
+        Query = "select productname from products where supplierid=(select supplierid from suppliers where country=%s)"
+        cur.execute(Query, ('Sweden',))
         suppliers_records = cur.fetchall()
         for i in suppliers_records:
-            L.append(i)
-        return L
+            l.append(i)
+        return l
     except (Exception, psycopg2.Error) as error:
         print("Error while fetching data from PostgreSQL", error)
 
