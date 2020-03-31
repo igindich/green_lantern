@@ -1,0 +1,7 @@
+create database cursor_db;
+create user test_cursor with password "test";
+grant ALL ON DATABASE test_cursor_db to test_cursor;
+
+create database test_cursor_db;
+create user cursor with password 'very_secret_password';
+grant ALL ON DATABASE cursor_db to cursor;
