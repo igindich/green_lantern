@@ -1,3 +1,5 @@
+Don`t create anythings by hands!!!!
+
 create database cursor_db;
 create user test_cursor with password "test";
 grant ALL ON DATABASE test_cursor_db to test_cursor;

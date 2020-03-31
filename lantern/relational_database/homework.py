@@ -19,8 +19,13 @@ def task_1_add_new_record_to_db(con) -> None:
     Returns: 92 records
 
     """
-    #cur = con.cursor()
-    pass
+    try:
+        cur = con.cursor()
+        Query = "INSERT INTO Customers(CustomerName,ContactName,Address,City,PostalCode,Country) VALUES (%s, %s, %s, %s, %s,%s);"
+        cur.execute(Query, ('Thomas', 'David', 'Some Address', 'London', '774', 'Singapore'))
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
+
 
 def task_2_list_all_customers(cur) -> list:
     """
@@ -56,7 +61,7 @@ def task_3_list_customers_in_germany(cur) -> list:
     """
     L = []
     try:
-        Query = "select * from Customers where Country = 'Germany' "
+        Query = "select * from Customers where Country = 'Germany'"
         cur.execute(Query)
         customer_records = cur.fetchall()
         for i in customer_records:
@@ -67,6 +72,7 @@ def task_3_list_customers_in_germany(cur) -> list:
 
 
 def task_4_update_customer(con):
+
     """
     Update first customer's name (Set customername equal to  'Johnny Depp')
     Args:
@@ -75,7 +81,13 @@ def task_4_update_customer(con):
     Returns: 91 records with updated customer
 
     """
-    pass
+
+    try:
+        cur = con.cursor()
+        Query = "UPDATE customers SET customername = %s WHERE customerid = %s "
+        cur.execute(Query, ("Johnny Depp", 1))
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_5_delete_the_last_customer(con) -> None:
@@ -85,7 +97,12 @@ def task_5_delete_the_last_customer(con) -> None:
     Args:
         con: psycopg connection
     """
-    pass
+    try:
+        cur = con.cursor()
+        Query = "DELETE FROM customers WHERE customerid=(SELECT MAX(customerid) from customers) "
+        cur.execute(Query, ())
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_6_list_all_supplier_countries(cur) -> list:
