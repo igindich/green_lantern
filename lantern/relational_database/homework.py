@@ -19,7 +19,7 @@ def task_1_add_new_record_to_db(con) -> None:
     Returns: 92 records
 
     """
-    pass
+    cur = con.cursor()
 
 
 def task_2_list_all_customers(cur) -> list:
@@ -32,7 +32,15 @@ def task_2_list_all_customers(cur) -> list:
     Returns: 91 records
 
     """
-    pass
+    L = []
+    try:
+        Query = "select * from Customers"
+        cur.execute(Query)
+        customer_records = cur.fetchall()
+        for i in customer_records:
+            L.append(i)
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_3_list_customers_in_germany(cur) -> list:
