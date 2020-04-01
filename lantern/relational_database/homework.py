@@ -282,7 +282,16 @@ def task_14_list_products_with_supplier_information(cur):
 
     Returns: 77 records
     """
-    pass
+    l = []
+    try:
+        Query = "select productid,productname,unit,price,suppliers.country,suppliers.city,suppliers.suppliername from products inner join suppliers on products.supplierid=suppliers.supplierid"
+        cur.execute(Query, ())
+        suppliers_records = cur.fetchall()
+        for i in suppliers_records:
+            l.append(i)
+        return l
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_15_list_customers_with_any_order_or_not(cur):
