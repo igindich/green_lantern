@@ -1,5 +1,7 @@
 from typing import List
 
+import psycopg2
+
 
 def task_1_add_new_record_to_db(con) -> None:
     """
@@ -303,7 +305,16 @@ def task_15_list_customers_with_any_order_or_not(cur):
 
     Returns: 213 records
     """
-    pass
+    l = []
+    try:
+        Query = "select customername,contactname,country,orders.orderid from customers inner join orders on orders.customerid=customers.customerid"
+        cur.execute(Query, ())
+        suppliers_records = cur.fetchall()
+        for i in suppliers_records:
+            l.append(i)
+        return l
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
 
 
 def task_16_match_all_customers_and_suppliers_by_country(cur):
@@ -315,4 +326,13 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):
 
     Returns: 194 records
     """
-    pass
+    l = []
+    try:
+        Query = "select customername,contactname,country,orders.orderid from customers inner join orders on orders.customerid=customers.customerid"
+        cur.execute(Query, ())
+        suppliers_records = cur.fetchall()
+        for i in suppliers_records:
+            l.append(i)
+        return l
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
