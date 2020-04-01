@@ -328,7 +328,7 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):
     """
     l = []
     try:
-        Query = "select customername,contactname,country,orders.orderid from customers inner join orders on orders.customerid=customers.customerid"
+        Query = "select customername,customers.address,customers.country,suppliers.country,suppliers.suppliername from customers left join suppliers on customers.country=suppliers.country order by customers.country,customers.customername"
         cur.execute(Query, ())
         suppliers_records = cur.fetchall()
         for i in suppliers_records:
