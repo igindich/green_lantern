@@ -164,7 +164,7 @@ def task_8_count_customers_by_city(cur):
     """
     L = []
     try:
-        Query = "select COUNT(city), city from customers GROUP BY city ORDER BY  count(*),city desc"
+        Query = "select city,count(city) from (select * from customers order by customername) as nested group by city order by count(*) desc,city asc"
         cur.execute(Query)
         customers_city_records = cur.fetchall()
         for i in customers_city_records:
