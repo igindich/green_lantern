@@ -1,6 +1,7 @@
 from typing import List
 
 import psycopg2
+import json
 
 
 def task_1_add_new_record_to_db(con) -> None:
@@ -163,12 +164,13 @@ def task_8_count_customers_by_city(cur):
     """
     L = []
     try:
-        Query = "select COUNT(city), city from customers GROUP BY city"
+        Query = "select COUNT(city), city from customers GROUP BY city ORDER BY  count(*),city desc"
         cur.execute(Query)
         customers_city_records = cur.fetchall()
         for i in customers_city_records:
             L.append(i)
         return L
+
     except (Exception, psycopg2.Error) as error:
         print("Error while fetching data from PostgreSQL", error)
 
