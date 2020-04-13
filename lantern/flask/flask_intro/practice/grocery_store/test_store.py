@@ -46,4 +46,4 @@ class TestUsers(Initializer):
     def test_get_unexistent_user(self):
         resp = self.client.get(f'/users/1')
         assert resp.status_code == 404
-        assert resp.json == {'error':'No such user_id 1'}
+        assert resp.json == {'error':'No  such user_id 1'}
