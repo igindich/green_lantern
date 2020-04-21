@@ -2,3 +2,6 @@ env/
 __pycache__/
 *.pyc
 .idea/
+/.gitignore
+/for review/homework.py
+/for review/tests.py

@@ -8,11 +8,22 @@ class NoSuchUserError(Exception):
         self.message = f'No such user_id {user_id}'
 
 
+class NoSuchStoreError(Exception):
+    def __init__(self, store_id):
+        self.message = f'No such store_id {store_id}'
+
+
 app = Flask(__name__)
+
 
 @app.errorhandler(NoSuchUserError)
 def my_error_handler(e):
-	return jsonify({'error': e.message}), 404
+    return jsonify({'error': e.message}), 404
+
+
+@app.errorhandler(NoSuchStoreError)
+def my_error_handler(e):
+    return jsonify({'error': e.message}), 404
 
 
 @app.route('/users', methods=['POST'])
