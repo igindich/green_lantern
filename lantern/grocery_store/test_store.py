@@ -43,7 +43,7 @@ class TestUsers(Initializer):
         assert resp.status_code == 200
         assert resp.json == {'name':'John Doe'}
 
-    def test_get_unexistent_user(self):
+    def test_get_non_exist_user(self):
         resp = self.client.get(f'/users/1')
         assert resp.status_code == 404
         assert resp.json == {'error':'No such user_id 1'}
@@ -61,7 +61,7 @@ class TestUsers(Initializer):
         assert resp.status_code == 200
         assert resp.json == {'status': 'success'}
 
-    def test_unexistent_update_user(self):
+    def test_non_exsist_update_user(self):
         resp = self.client.put(
             f'/users/1',
             json={'name': 'Merlin Monro'}
@@ -70,6 +70,7 @@ class TestUsers(Initializer):
         assert resp.json == {'error': 'No such user_id 1'}
 
 class TestGoods(Initializer):
+
     def test_create_new_good(self):
         resp = self.client.post(
             '/goods',
@@ -108,3 +109,49 @@ class TestGoods(Initializer):
         )
         assert resp.status_code == 200
         assert resp.json == {'successfully_updated': 2, 'errors': {'no such id in goods': [3]}}
+
+
+class TestStore(Initializer):
+    def test_success_post_store(self):
+        resp = self.client.post(
+            '/store',
+            json={
+                'location': 'Lviv',
+            }
+        )
+        assert resp.status_code == 201
+
+    def test_success_get_store(self):
+        resp = self.client.post(
+            '/store',
+            json={
+                'location': 'Lviv'
+            }
+        )
+        store_id = resp.json['store_id']
+        resp = self.client.get(f'/store/{store_id}')
+
+        assert resp.status_code == 200
+        assert resp.json == {'location': 'Lviv', }
+
+
+    def test_successful_update_store(self):
+        resp_store = self.client.post(
+            '/store',
+            json={
+                'location': 'Lviv',
+            }
+        )
+
+        store_id = resp_store.json['store_id']
+
+        resp_store = self.client.put(
+            f'/store/{store_id}',
+            json={
+                'location': 'Kiev'
+            }
+        )
+
+        assert resp_store.status_code == 200
+        assert resp_store.json == {'status': 'success'}
+
