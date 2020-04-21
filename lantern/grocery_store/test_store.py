@@ -68,3 +68,43 @@ class TestUsers(Initializer):
         )
         assert resp.status_code == 404
         assert resp.json == {'error': 'No such user_id 1'}
+
+class TestGoods(Initializer):
+    def test_create_new_good(self):
+        resp = self.client.post(
+            '/goods',
+            json=[{'good': 'Chocolate_bar',
+                   'price': 10},
+                  {'good': 'Milk',
+                   'price': 5}
+                  ]
+        )
+
+        assert resp.status_code == 201
+        assert resp.json == {'numbers of items created': 2}
+
+    def test_get_goods(self):
+        resp = self.client.post(
+            '/goods',
+            json=[{'good': 'Chocolate_bar', 'price': 10},
+                  {'good': 'Milk', 'price': 5}]
+        )
+        resp = self.client.get('/goods')
+        assert resp.status_code == 200
+        assert resp.json == [{'good': 'Chocolate_bar', 'price': 10, 'id': 1},
+                             {'good': 'Milk', 'price': 5, 'id': 2}]
+
+    def test_update_goods(self):
+        resp = self.client.post(
+            '/goods',
+            json=[{'good': 'Chocolate_bar', 'price': 10},
+                  {'good': 'Milk', 'price': 5}]
+        )
+        resp = self.client.put(
+            '/goods',
+            json=[{'good': 'Chocolate_bar', 'price': 25, 'id': 1},
+                  {'good': 'Milk', 'price': 15, 'id': 2},
+                  {'good': 'crisps', 'price': 5, 'id': 3}]
+        )
+        assert resp.status_code == 200
+        assert resp.json == {'successfully_updated': 2, 'errors': {'no such id in goods': [3]}}
