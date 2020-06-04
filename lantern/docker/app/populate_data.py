@@ -7,6 +7,7 @@ def get_users():
         users = [i for i in reader]
     return users
 
+
 def get_goods():
     with open("data/goods.csv") as f:
         reader = csv.DictReader(f)
