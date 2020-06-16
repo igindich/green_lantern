@@ -1,17 +1,18 @@
 from flask import Flask
 from login import login
 from db import db
+from config import config
 from route.homePage import homePage
 from route.goods import goods
 from route.managers import managers
 from route.stores import stores
 from create_db import create_db, create_data
-from config import Config
+
 
 
 def run_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config)
     db.init_app(app)
     login.init_app(app)
     app.register_blueprint(create_db)

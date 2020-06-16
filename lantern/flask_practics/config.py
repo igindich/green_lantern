@@ -1,7 +1,6 @@
 import os
-
-
-class Config:
+class config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     PG_USER = "postgres"
     PG_PASSWORD = 'docker'
     PG_HOST = "localhost"
