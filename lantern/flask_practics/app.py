@@ -1,4 +1,3 @@
-from config import Config
 from flask import Flask
 from login import login
 from db import db
@@ -7,6 +6,7 @@ from route.goods import goods
 from route.managers import managers
 from route.stores import stores
 from create_db import create_db, create_data
+from config import Config
 
 
 def run_app():
