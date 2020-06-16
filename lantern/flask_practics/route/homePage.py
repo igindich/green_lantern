@@ -7,8 +7,8 @@ from flask import url_for
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
 
-from app.models.models import User, Manager, Store, Good
-from app.db import db
+from models.models import User, Manager, Store, Good
+from db import db
 
 
 homePage = Blueprint('homePage', __name__)

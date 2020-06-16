@@ -1,13 +1,11 @@
 from flask_restful import Resource
 from sqlalchemy_utils import create_database, database_exists
-from app.models.models import Manager, Good, Store
-from app.create_db import get_managers, get_store, get_goods
-from app.db import db
-
+from models.models import Manager, Good, Store
+from create_db.populate_data import get_managers, get_store, get_goods
+from db import db
 
 
 class CreateDB(Resource):
-
     def get(self):
         if database_exists(db.engine.url):
             db.create_all()
@@ -19,6 +17,7 @@ class CreateDB(Resource):
             db.create_all()
             db.session.commit()
             print('Database_created')
+
 
 class CreateData(Resource):
     def get(self):

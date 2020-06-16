@@ -3,8 +3,8 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
-from app.models.models import Good
-from app.db import db
+from models.models import Good
+from db import db
 from flask_login import login_required
 
 

@@ -16,7 +16,7 @@ def get_goods():
 
 
 def get_store():
-    with open ('create_db/stores.csv', 'r') as f:
+    with open('create_db/stores.csv', 'r') as f:
         reader = csv.DictReader(f)
         stores = [i for i in reader]
         return stores

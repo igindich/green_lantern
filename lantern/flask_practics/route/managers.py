@@ -4,8 +4,8 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask_login import login_required
-from app.models.models import Manager, Store
-from app.db import db
+from models.models import Manager, Store
+from db import db
 
 managers = Blueprint('managers', __name__)
 

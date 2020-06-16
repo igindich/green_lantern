@@ -1,4 +1,6 @@
 import os
+
+
 class Config:
     PG_USER = "postgres"
     PG_PASSWORD = 'docker'

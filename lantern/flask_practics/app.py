@@ -1,12 +1,12 @@
+from config import Config
 from flask import Flask
-from app.login import login
-from app.db import db
-from app.config import Config
-from app.route.homePage import homePage
-from app.route.goods import goods
-from app.route.managers import managers
-from app.route.stores import stores
-from app.create_db import create_db, create_data
+from login import login
+from db import db
+from route.homePage import homePage
+from route.goods import goods
+from route.managers import managers
+from route.stores import stores
+from create_db import create_db, create_data
 
 
 def run_app():
